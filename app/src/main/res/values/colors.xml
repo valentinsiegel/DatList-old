@@ -2,4 +2,6 @@
 <resources>
     <color name="light_green">#2E7D32</color>
     <color name="dark_green">#1B5E20</color>
+    <color name="white">#ffffff</color>
+    <color name="drawer_green">#388E3C</color>
 </resources>
