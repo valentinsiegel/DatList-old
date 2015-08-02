@@ -1,5 +1,6 @@
 package fr.siegel.datlist.adapters;
 
+import android.content.res.TypedArray;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,14 @@ import android.widget.TextView;
 
 import datlist.siegel.fr.datlist.R;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDrawerAdapter.ViewHolder> {
 
     private static final int TYPE_HEADER = 0;  // Declaring Variable to Understand which View is being worked on
     // IF the view under inflation and population is header or Item
     private static final int TYPE_ITEM = 1;
 
     private String navigationTitles[]; // String Array to store the passed titles Value from MainActivity.java
-    private int icons[];       // Int Array to store the passed icons resource value from MainActivity.java
+    private TypedArray icons;       // Int Array to store the passed icons resource value from MainActivity.java
 
     private String name;        //String Resource for header View name
     private int profile;        //int Resource for header view profile picture
@@ -26,7 +27,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Creating a ViewHolder which extends the RecyclerView View Holder
     // ViewHolder are used to to store the inflated views in order to recycle them
 
-    public MyAdapter(String Titles[], int Icons[], String Name, String Email, int Profile) { // MyAdapter Constructor with titles and icons parameter
+    public NavigationDrawerAdapter(String Titles[], TypedArray Icons, String Name, String Email, int Profile) { // NavigationDrawerAdapter Constructor with titles and icons parameter
         // titles, icons, name, email, profile pic are passed from the main activity as we
         navigationTitles = Titles;                //have seen earlier
         icons = Icons;
@@ -39,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NavigationDrawerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         if (viewType == TYPE_ITEM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.drawer_item, parent, false); //Inflating the layout
@@ -70,11 +71,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Tells us item at which position is being constructed to be displayed and the holder id of the holder object tell us
     // which view type is being created 1 for item row
     @Override
-    public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(NavigationDrawerAdapter.ViewHolder holder, int position) {
         if (holder.holderId == 1) {                              // as the list view is going to be called after the header view so we decrement the
             // position by 1 and pass it to the holder while setting the text and image
             holder.textView.setText(navigationTitles[position - 1]); // Setting the Text with the array of our Titles
-            holder.imageView.setImageResource(icons[position - 1]);// Settimg the image with array of our icons
+            holder.imageView.setImageResource(icons.getResourceId(position - 1, 0));// Settimg the image with array of our icons
         } else {
 
             holder.profile.setImageResource(profile);           // Similarly we set the resources for header view

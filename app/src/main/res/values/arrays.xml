@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_list">
+        <item>@string/drawer_my_list</item>
+        <item>@string/drawer_my_settings</item>
+    </string-array>
+
+    <array name="drawer_icons">
+        <item>@drawable/ic_list</item>
+        <item>@drawable/ic_settings</item>
+    </array>
+
+</resources>
